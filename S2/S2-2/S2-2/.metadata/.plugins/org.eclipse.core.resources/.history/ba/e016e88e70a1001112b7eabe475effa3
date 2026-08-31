@@ -1,0 +1,97 @@
+package GUI;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class V1 extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblDigiteAltura;
+	private JTextField txtbase;
+	private JTextField txtaltura;
+	private JButton btn1;
+	private JButton bnt2;
+	private JTextArea txtS;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					V1 frame = new V1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public V1() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("Digite base");
+		lblNewLabel.setBounds(10, 26, 73, 14);
+		contentPane.add(lblNewLabel);
+		
+		lblDigiteAltura = new JLabel("Digite altura");
+		lblDigiteAltura.setBounds(10, 64, 73, 14);
+		contentPane.add(lblDigiteAltura);
+		
+		txtbase = new JTextField();
+		txtbase.setBounds(112, 23, 86, 20);
+		contentPane.add(txtbase);
+		txtbase.setColumns(10);
+		
+		txtaltura = new JTextField();
+		txtaltura.setBounds(112, 61, 86, 20);
+		contentPane.add(txtaltura);
+		txtaltura.setColumns(10);
+		
+		btn1 = new JButton("Procesar");
+		btn1.setBounds(289, 22, 89, 23);
+		contentPane.add(btn1);
+		
+		bnt2 = new JButton("Limpiar");
+		bnt2.addActionListener(this);
+		bnt2.setBounds(289, 60, 89, 23);
+		contentPane.add(bnt2);
+		
+		txtS = new JTextArea();
+		txtS.setBounds(10, 108, 414, 142);
+		contentPane.add(txtS);
+
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == bnt2) {
+			do_bnt2_actionPerformed(e);
+		}
+	}
+	protected void do_bnt2_actionPerformed(ActionEvent e) {
+		txtS.append("");
+		txtbase.setText("");
+		txtaltura.setText("");
+	}
+}

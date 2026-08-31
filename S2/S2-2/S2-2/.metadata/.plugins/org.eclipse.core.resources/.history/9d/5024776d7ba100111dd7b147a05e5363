@@ -1,0 +1,94 @@
+package GUI;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Clases.Numero;
+
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class V2 extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtnum;
+	private JTextArea txts;
+	private JScrollPane scrollPane;
+	private JLabel lblNewLabel;
+	private JButton btnNewButton;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					V2 frame = new V2();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public V2() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 241, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		txtnum = new JTextField();
+		txtnum.setBounds(129, 11, 86, 20);
+		contentPane.add(txtnum);
+		txtnum.setColumns(10);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 82, 205, 168);
+		contentPane.add(scrollPane);
+		
+		txts = new JTextArea();
+		scrollPane.setViewportView(txts);
+		
+		lblNewLabel = new JLabel("Numero Real");
+		lblNewLabel.setBounds(10, 14, 86, 14);
+		contentPane.add(lblNewLabel);
+		
+		btnNewButton = new JButton("Procesar");
+		btnNewButton.addActionListener(this);
+		btnNewButton.setBounds(7, 39, 89, 23);
+		contentPane.add(btnNewButton);
+
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		double num = Double.parseDouble(txtnum.getText());
+		Numero n = new Numero(num);
+		Imprimir("El numero es: "+ n.getNumeroReal());
+		Imprimir("Su cuadrado es: "+ n.);
+	}
+	void Imprimir (String s) {
+		txts.append(s + "\n");
+	}
+	
+}

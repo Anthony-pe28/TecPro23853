@@ -1,0 +1,108 @@
+package GUI;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Clases.Cilindro;
+
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class V3 extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextArea txts;
+	private JScrollPane scrollPane;
+	private JTextField txtr;
+	private JTextField txth;
+	private JButton btn1;
+	private JLabel lblNewLabel;
+	private JLabel lblAltura;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					V3 frame = new V3();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public V3() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 212, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 114, 176, 136);
+		contentPane.add(scrollPane);
+		
+		txts = new JTextArea();
+		scrollPane.setViewportView(txts);
+		
+		txtr = new JTextField();
+		txtr.setBounds(100, 11, 86, 20);
+		contentPane.add(txtr);
+		txtr.setColumns(10);
+		
+		txth = new JTextField();
+		txth.setColumns(10);
+		txth.setBounds(100, 42, 86, 20);
+		contentPane.add(txth);
+		
+		btn1 = new JButton("Procesar");
+		btn1.addActionListener(this);
+		btn1.setBounds(54, 80, 89, 23);
+		contentPane.add(btn1);
+		
+		lblNewLabel = new JLabel("Radio");
+		lblNewLabel.setBounds(10, 14, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		lblAltura = new JLabel("Altura");
+		lblAltura.setBounds(10, 45, 46, 14);
+		contentPane.add(lblAltura);
+
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btn1) {
+			do_btn1_actionPerformed(e);
+		}
+	}
+	protected void do_btn1_actionPerformed(ActionEvent e) {
+		double radio = Double.parseDouble(txtr.getText());
+		double altura = Double.parseDouble(txth.getText());
+		
+		Cilindro c = new Cilindro(radio, altura);
+		Imprimir("Su radio es: "+c.getRdo());
+		Imprimir("Su altura es: "+c.getAlta());
+		Imprimir("El volumen del cilindro es de: "+c.Volumen());
+	}
+	void Imprimir (String s) {
+		txts.append(s+"\n");
+	}
+}
